@@ -1,5 +1,5 @@
 int main(){
     puts("Digite um inteiro: ");
-    scanf("%d",&x);
+    scanf("%d",);
     return 0;
 }
