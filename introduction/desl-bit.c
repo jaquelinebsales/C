@@ -3,13 +3,13 @@ bit em uma posição fornecida pelo usuário. */
 #include <stdio.h>
 /*
 int main(){
-    unsigned char cod = 219; //     1101 1011
-    unsigned char pos;
-    unsigned char mask = 0x01; //   0000 0001
+    int cod = 219; //     1101 1011
+    int  pos;
+    int mask = 0x01; //   0000 0001
 
     // Ligar 
     puts("Digite a posição que deseja ligar: ");
-    scanf("%hhu",&pos);
+    scanf("%d",&pos);
 
     //Processamento
     pos = pos - 1;
@@ -18,11 +18,24 @@ int main(){
     // cod = cod | mask; 
     cod |= mask;
 
-    printf("Código atualizado: %hhu\n",cod);
+    printf("Código atualizado: %d\n",cod);
     
     return 0;
-}*/
-
+}
+*/
 void main(){
-    
+    int cod = 219; // 1101 1011
+    int pos;
+    int mask = 0x01;
+
+    puts("Digite a posicao que deseja desligar: ");
+    scanf("%hhu",&pos);
+
+    pos = pos - 1;
+    printf("Posicao: %hhu \n", pos);
+    mask = mask << pos;
+    printf("Mascara: %hhu \n", mask);
+    cod = cod ^ mask;
+
+    printf("codigo final: %hhu \n",cod);
 }
