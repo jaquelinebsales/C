@@ -26,5 +26,5 @@ void main(){
         puts("O número digitado excede o número de posições totais.");
     }
     
-    printf("Código final: %hhu \n",cod);
+    printf("Código final: %d \n",cod);
 }
