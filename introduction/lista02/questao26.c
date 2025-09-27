@@ -2,25 +2,19 @@
 #include <math.h>
 
 void main(){
-    int binario;
-    int variavel_auxiliar = 0;
-    int variavel_auxiliar2;
+    unsigned int binario = 0;
+    unsigned int v_aux = 0;
+    unsigned int mask = 1;
 
     for(int i = 1; i<=256; i++){
-
-        variavel_auxiliar2 = i;
-        for (int j = 8; j >= 0; j--){
-            if((int)pow(2,j) <= variavel_auxiliar2){
-                if(j==0){
-                    variavel_auxiliar+=1;
-                }
-                variavel_auxiliar += (int)pow(10,j);
-                variavel_auxiliar2 -= (int)pow(2,j);
-            }
+        v_aux = i;
+        binario = 0;
+        mask = 1;
+        while (v_aux > 0){
+            binario += ((v_aux%2) * mask);
+            v_aux /= 2;
+            mask *= 10;
         }
-
-        binario = variavel_auxiliar;
-        
         printf("%d %o %x %d\n",i,i,i, binario);
     }
 }
