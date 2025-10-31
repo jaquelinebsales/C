@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h> 
+#include <time.h>
+
+#define MX 10
+#define TAM_VETOR 10
+
+
+int main(){
+    int num[TAM_VETOR], var_aux;
+
+    srand(time(NULL));
+    
+    for(int k = 0; k<TAM_VETOR; k++){
+        num[k] = rand()%MX;
+    }
+
+
+    for(int g = 0; g < TAM_VETOR; g++){
+        printf("%d ",num[g]);
+    }
+    printf("\n");
+
+    for(int i = 0; i < (TAM_VETOR - 1); i++){
+        for(int j = i+1; j < TAM_VETOR; j++){
+            if(num[i] > num[j]){
+                var_aux = num[i];
+                num[i] = num[j];
+                num[j] = var_aux;
+            }
+        }
+    }
+
+    for(int g = 0; g < TAM_VETOR; g++){
+        printf("%d ",num[g]);
+    }
+
+    return 0;
+}
