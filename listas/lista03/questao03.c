@@ -9,7 +9,7 @@ int main(){
     fgets(string, SIZE, stdin);
 
     for(int i = 0; i < SIZE; i++){
-        if(string[i] != 0){
+        if(string[i] != '\0'){
             cont++;
         }else{
             break;
