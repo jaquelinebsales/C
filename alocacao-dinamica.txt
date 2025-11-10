@@ -46,15 +46,18 @@ int somarPares(int *ponteiro, int q_bytes){
 }
 
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
 
 #define MAX 100
+
+int somarValoresMatriz(int *, int, int, int, int, int);
+
 int main(){
-    int linhas, colunas, *matriz = NULL;
+    int linhas, colunas, *matriz = NULL, linha_usuario1, coluna_usuario1, linha_usuario2, coluna_usuario2;
 
     puts("Digite a quantidade de linhas da matriz: ");
     scanf("%d",&linhas);
@@ -80,6 +83,24 @@ int main(){
         }
     }
 
+    puts("Digite a linha e coluna do primeiro valor: ");
+    scanf("%d %d", &linha_usuario1, &coluna_usuario1);
+
+    puts("Digite a linha e coluna do secundo valor: ");
+    scanf("%d %d", &linha_usuario2, &coluna_usuario2);
+
+    if(linha_usuario1 <= linhas-1 && linha_usuario2 <= linhas-1 && coluna_usuario1<= colunas-1 && coluna_usuario2 <= colunas-1){
+        printf("A soma dos valores é: %d \n", somarValoresMatriz(matriz, linha_usuario1, coluna_usuario1, linha_usuario2, coluna_usuario2, colunas));
+    }else{
+        puts("linha e/ou coluna inválida.");
+        exit(1);
+    }
+
     free(matriz);
     return 0;
+}
+
+int somarValoresMatriz(int *Matriz, int l_usuario1, int c_usuario1, int l_usuario2, int c_usuario2, int c_matriz){
+    int soma = Matriz[c_matriz*(l_usuario1+1) - (c_matriz-c_usuario1)] + Matriz[c_matriz*(l_usuario2+1) - (c_matriz-c_usuario2)];
+    return soma;
 }
