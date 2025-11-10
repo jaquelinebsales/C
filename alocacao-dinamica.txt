@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define MAX 10
+int somarPares(int *ponteiro, int q_bytes);
+int main(){
+
+    int *p;
+    int qtd;
+
+    puts("Entre com a quantidade: ");
+    scanf("%d", &qtd);
+
+    p = malloc(qtd * sizeof(int));
+    if(!p){
+        puts("Memória insuficiente");
+        exit(1);
+    }
+
+    srand(time(NULL));
+    for(int i = 0; i < qtd ; i++){
+        p[i] = rand()%MAX;
+    }
+
+    puts("Array gerado: ");
+    for(int i = 0; i <qtd; i++){
+        printf("%d \n", p[i]);
+    }
+
+    printf("A soma dos números pares do array gerado é: %d\n", somarPares(p, qtd));
+
+    free(p);
+    return 0;
+}
+
+int somarPares(int *ponteiro, int q_bytes){
+    int soma = 0;
+    for(int i = 0; i < q_bytes ; i++){
+        if ( ponteiro[i] % 2 == 0){
+            soma += ponteiro[i];
+        }
+    }
+
+    return soma;
+}
+
+
+
+
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+
+#define MAX 100
+int main(){
+    int linhas, colunas, *matriz = NULL;
+
+    puts("Digite a quantidade de linhas da matriz: ");
+    scanf("%d",&linhas);
+    puts("Digite a quantidade colunas: ");
+    scanf("%d", &colunas);
+
+    matriz = (int *  )malloc(linhas * colunas * sizeof(int));
+
+    srand(time(NULL));
+    for(int i = 0; i < (linhas*colunas); i++){
+        *(matriz+i) = rand() % MAX;
+    }
+
+    for(int  i = 0; i < (linhas*colunas); i++){
+        printf("%5d", matriz[i]);
+        if((i+1)%colunas==0){
+            puts(" ");
+        }
+    }
+
+    free(matriz);
+    return 0;
+}
