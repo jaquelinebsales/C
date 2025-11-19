@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define MAX 10
+struct ALUNO{
+    float *pNotas;
+    float media;
+};
+
+void calcularMedia(struct ALUNO *const aluno, int size);
+//void calcularMedia(struct ALUNO *);
+//float calcularMedia(const float nota1, const float nota2);
+
+int main(int argc, char *argv[]){
+    struct ALUNO a1;
+
+    if(argc!=2){
+        puts("Interrompendo execução");
+        puts("Quantidade inválida de dados");
+        exit(1);
+    }
+    int tam = atoi(argv[1]);
+    a1.pNotas = malloc(tam*sizeof(float));
+
+    srand(time(NULL));
+    for(int i = 0; i < tam; i++){
+        *(a1.pNotas+i) = ((float)rand()/RAND_MAX) * MAX;
+    }
+
+    puts("Vetor de notas para aluno criado: ");
+    for(int i = 0; i < tam; i++){
+        printf("%5.2f", *(a1.pNotas+i));
+    }
+    puts("");
+    // puts("Aluno 1: Nota 1 ");
+    // scanf("%f", &a1.n1);
+
+    // puts("Aluno 1: Nota 2 ");
+    // scanf("%f", &a1.n2);
+
+    // calcularMedia(&a1);
+
+    // printf("Média do aluno1: %.2f \n", a1.media);
+
+    calcularMedia(&a1, tam);
+    printf("Média calculada: %.2f \n", a1.media);
+    free(a1.pNotas);
+    return 0;
+}
+
+// float calcularMedia(const float nota1, const float nota2){
+//     return((2*nota1 + 3*nota2)/5);
+// }   
+
+// struct ALUNO calcularMedia(struct ALUNO x){
+//     x.media = ((2*x.n1 + 3*x.n2)/5.0);
+//     return x;
+// }
+
+// void calcularMedia(struct ALUNO *const px){
+//      px->media = ((2*px->n1 + 3*px->n2)/5.0);
+// }
+
+void calcularMedia(struct ALUNO *const aluno, int size){
+    aluno->media = 0;
+    for(int i = 0; i < size; i++){
+        aluno->media += *((aluno->pNotas)+i);
+    }
+    aluno->media/=size;
+}
