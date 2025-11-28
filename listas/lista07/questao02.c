@@ -10,11 +10,10 @@ struct Estoque{
 int main(int argc, char **argv){
     if(argc != 3){
         puts("Uso: ");
-        printf(" %s <qnt. produtos> <tam. nome>", *argv);
+        puts("<qnt. produtos> <tam. nome>");
         exit(1);
     }
 
-    char res;
     int cont = 0;
     int quantProdutos = atoi(argv[1]);
     int tamNome =  atoi(argv[2]);
@@ -22,10 +21,11 @@ int main(int argc, char **argv){
     produtos = malloc(sizeof(struct Estoque)*quantProdutos);
 
     for(int i = 0; i < quantProdutos; i++){
-        produtos->nomePeca = malloc(tamNome*sizeof(char));
+        (produtos+i)->nomePeca = malloc(tamNome*sizeof(char));
     }
 
     for(int i = 0; i < quantProdutos; i++){
+
         puts("Digite o nome do produto: ");
         fgets((produtos+i)->nomePeca, tamNome, stdin);
 
@@ -34,16 +34,24 @@ int main(int argc, char **argv){
 
         puts("Digite o preço da peça: ");
         scanf("%f", &((produtos+i)->precoPeca));
-
+        getchar();
         cont++;
         ((produtos+i)->nPedido) = cont;
     }
 
     for(int i = 0; i < quantProdutos; i++){
-        printf("%10s", (produtos+i)->nomePeca);
-        printf("%5d", (produtos+i)->nPeca);
-        printf("%5f", (produtos+i)->precoPeca);
-        printf("%5d", (produtos+i)->nPedido);
+        printf("%8s", (produtos+i)->nomePeca);
+        printf("%5d \n", (produtos+i)->nPeca);
+        printf("%5.2f \n", (produtos+i)->precoPeca);
+        printf("%5d \n", (produtos+i)->nPedido);
+        puts("");
     }
+
+    for(int i = 0; i < quantProdutos; i++){
+        free((produtos+i)->nomePeca);
+    }
+
+    free(produtos);
+
     return 0;
 }
